@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Address")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+        }
+        <input type="hidden" id="rows" value="0" />
+        <button id="AddButton">Add New Row</button>
+
+    </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#AddButton").click(function () {
+            tc = parseInt($("#rows").val());
+            tc = tc + 1;
+            $("#rows").val(tc)
+
+            $("tbody").append('<tr><td><input type="text" name="[' + (tc - 1) + '].Name" /></td><td><input type="text" name="[' + (tc - 1) + '].Address" /></td><tr>Remove')
+        });
+
+        $("tbody").on("click", "span", function () {
+            tc = parseInt($("#rows").val());
+            tc = tc - 1;
+            $("#rows").val(tc)
+
+            $(this).parents("tr").remove();
+        });
+    });
+</script>
