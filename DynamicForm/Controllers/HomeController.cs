@@ -12,10 +12,21 @@ namespace DynamicForm.Controllers
     {
         public ActionResult Index(List<PassengerModel> passengerModelList)
         {
+            var dropDown = new List<string>()
+            {
+                "ABC",
+                "CDE",
+                "EFG"
+            };
+            foreach(string x in dropDown)
+            {
+                Console.WriteLine(x);
+            }
             if( passengerModelList!= null) 
             {
                 return View("PassengerView",passengerModelList);
             }
+            ViewBag.DropDown = dropDown;
             return View();
         }
     }
